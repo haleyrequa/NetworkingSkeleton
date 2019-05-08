@@ -9,24 +9,18 @@ namespace Zone
         public GameObject BodyPrefab;
 
         private Dictionary<int, BodyController> _bodies = new Dictionary<int, BodyController>();
-        private BodyController _bodyController;
         private AstraController _astraController;
         private Astra.Body[] _astraBodies = new Astra.Body[Astra.BodyFrame.MaxBodies];
 
         // Start is called before the first frame update
         private void Awake()
         {
-            _bodyController = FindObjectOfType<BodyController>();
-            _astraController = FindObjectOfType<AstraController>();
-        }
-
-        void Start()
-        {
             InitializedAstraController();
         }
 
         private void InitializedAstraController()
         {
+            _astraController = FindObjectOfType<AstraController>();
             if (_astraController == null) return;
 
             _astraController.NewBodyFrameEvent.AddListener(OnAstraNewFrame);

@@ -17,6 +17,11 @@ namespace Zone
         public GameObject OrbbecMesh;
         public GameObject Screen;
 
+        private void Start()
+        {
+            Toggle(false);
+        }
+
         public void Toggle(bool on)
         {
             //DepthCamera.gameObject.SetActive(on);
