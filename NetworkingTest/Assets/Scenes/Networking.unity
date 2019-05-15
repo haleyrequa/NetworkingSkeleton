@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &118835190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +381,106 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &844688617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 844688619}
+  - component: {fileID: 844688618}
+  - component: {fileID: 844688622}
+  - component: {fileID: 844688621}
+  - component: {fileID: 844688620}
+  m_Layer: 0
+  m_Name: Nuitrack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &844688618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844688617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80cd35d79163a34469e201b903e06d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  depthModuleOn: 0
+  colorModuleOn: 0
+  userTrackerModuleOn: 0
+  skeletonTrackerModuleOn: 1
+  gesturesRecognizerModuleOn: 0
+  handsTrackerModuleOn: 0
+  wifiConnect: 0
+  runInBackground: 0
+  initEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: InitEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!4 &844688619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844688617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &844688620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844688617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c969da05bae23445a33595e68c68551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useCalibrationSensorOrientation: 1
+  trackFloorHeight: 0
+--- !u!114 &844688621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844688617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e294c741cd196f940acda20d3d39a172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  calibrationType: 0
+  calibrationTime: 0
+  maxAngle: 30
+  maxSqrDifference: 10000
+--- !u!114 &844688622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844688617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0553d2c8dca969e4b9687ceaf94767d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1597029103
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +530,7 @@ MonoBehaviour:
   m_NetworkPort: 7777
   m_ServerBindToIP: 0
   m_ServerBindAddress: 
-  m_NetworkAddress: 198.161.203.6
+  m_NetworkAddress: 10.2.36.36
   m_DontDestroyOnLoad: 1
   m_RunInBackground: 1
   m_ScriptCRCCheck: 1
@@ -563,7 +663,7 @@ PrefabInstance:
     - target: {fileID: 628084396633577325, guid: 5e101733b9788554c85b13f7114fcd72,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 628084396633577325, guid: 5e101733b9788554c85b13f7114fcd72,
         type: 3}

@@ -30,7 +30,7 @@ namespace Zone
         {
             foreach (Joint joint in _body.Joints)
             {
-                if (joint.Type == JointType.Unknown) continue;
+                if (joint.Type == JointType.None) continue;
 
                 _joints[joint.Type] =
                   Instantiate(
@@ -39,8 +39,16 @@ namespace Zone
                   new Quaternion(),
                   transform);
 
-                if(NetworkServer.active)
+                if (NetworkServer.active)
+                {
+                    _joints[joint.Type].GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
                     NetworkServer.Spawn(_joints[joint.Type]);
+                }
+                if (NetworkClient.active)
+                {
+                    _joints[joint.Type].GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+                    NetworkServer.Spawn(_joints[joint.Type]);
+                }
 
                 if (joint.Type == JointType.LeftHand)
                 {
@@ -51,23 +59,23 @@ namespace Zone
                     _joints[joint.Type].GetComponentInChildren<MeshRenderer>().material.color = Color.red;
                 }
             }
-            _joints[JointType.Unknown] =
+            _joints[JointType.None] =
               Instantiate(
               JointPrefab,
               _body.CenterOfMass,
               new Quaternion(),
               transform);
-            _joints[JointType.Unknown].GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+            _joints[JointType.None].GetComponentInChildren<MeshRenderer>().material.color = Color.green;
         }
 
         private void UpdatePosition() {
             foreach (Joint joint in _body.Joints)
             {
-                if (joint.Type == JointType.Unknown) continue;
+                if (joint.Type == JointType.None) continue;
                 _joints[joint.Type].transform.localPosition = joint.Position;
                 Debug.DrawLine(_joints[joint.Type].transform.position, new Vector3(_joints[joint.Type].transform.position.x, _joints[joint.Type].transform.position.y));
             }
-            _joints[JointType.Unknown].transform.localPosition = _body.CenterOfMass;
+            _joints[JointType.None].transform.localPosition = _body.CenterOfMass;
         }
         
     }

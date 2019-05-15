@@ -10,20 +10,23 @@ namespace Zone
 
         private Dictionary<int, BodyController> _bodies = new Dictionary<int, BodyController>();
         private AstraController _astraController;
+        private NuitrackManager _nuitrackManager;
         private Astra.Body[] _astraBodies = new Astra.Body[Astra.BodyFrame.MaxBodies];
 
         // Start is called before the first frame update
         private void Awake()
         {
-            InitializedAstraController();
+            _astraController = FindObjectOfType<AstraController>();
+            _nuitrackManager = FindObjectOfType<NuitrackManager>();
+
+            if (_astraController != null)
+                _astraController.NewBodyFrameEvent.AddListener(OnAstraNewFrame);
+
         }
 
-        private void InitializedAstraController()
+        private void Update()
         {
-            _astraController = FindObjectOfType<AstraController>();
-            if (_astraController == null) return;
-
-            _astraController.NewBodyFrameEvent.AddListener(OnAstraNewFrame);
+            OnNuitrackUpdate();
         }
 
         public void OnAstraNewFrame(Astra.BodyStream bodyStream, Astra.BodyFrame frame)
@@ -39,6 +42,20 @@ namespace Zone
                 else if (_bodies.ContainsKey(body.Id))
                     _bodies[body.Id].gameObject.SetActive(false);
             }
+        }
+
+        public void OnNuitrackUpdate()
+        {
+            if (_nuitrackManager == null || CurrentUserTracker.CurrentUser == 0) return;
+
+            Body body = new Body(CurrentUserTracker.CurrentSkeleton);
+
+            if (body.Status && !_bodies.ContainsKey(body.Id))
+                InstantiateBody(body);
+            else if (body.Status)
+                _bodies[body.Id].OnNewFrame(body);
+            else if (_bodies.ContainsKey(body.Id))
+                _bodies[body.Id].gameObject.SetActive(false);
         }
 
         private void InstantiateBody(Body body)
